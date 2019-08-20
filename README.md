@@ -13,6 +13,7 @@ Adds shuttle controls(JKL controls) to video.js
   - [`<script>` Tag](#script-tag)
   - [Browserify/CommonJS](#browserifycommonjs)
   - [RequireJS/AMD](#requirejsamd)
+  - [ES6](#es6)
 - [Options](#options)
 - [License](#license)
 
@@ -35,9 +36,16 @@ This is the simplest case. Get the script in whatever way you prefer and include
 <script src="//path/to/video.min.js"></script>
 <script src="//path/to/videojs-shuttle-controls.min.js"></script>
 <script>
-  var player = videojs('my-video');
+  var player = videojs('my-video', {
+    playbackRates: [-10, -5, -2, -1, -0.5, 0.5, 1, 2, 5, 10]
+  });
 
-  player.shuttleControls();
+  player.shuttleControls({
+    playPauseKeys : [' ', 'k'],
+    backwardKeys  : ['j'],
+    forwardKey    : ['l'],
+    fps           : 30
+  });
 </script>
 ```
 
@@ -53,9 +61,16 @@ var videojs = require('video.js');
 // to a variable.
 require('videojs-shuttle-controls');
 
-var player = videojs('my-video');
+var player = videojs('my-video', {
+  playbackRates: [-10, -5, -2, -1, -0.5, 0.5, 1, 2, 5, 10]
+});
 
-player.shuttleControls();
+player.shuttleControls({
+  playPauseKeys : [' ', 'k'],
+  backwardKeys  : ['j'],
+  forwardKey    : ['l'],
+  fps           : 30
+});
 ```
 
 ### RequireJS/AMD
@@ -64,11 +79,37 @@ When using with RequireJS (or another AMD library), get the script in whatever w
 
 ```js
 require(['video.js', 'videojs-shuttle-controls'], function(videojs) {
-  var player = videojs('my-video');
+  var player = videojs('my-video', {
+    playbackRates: [-10, -5, -2, -1, -0.5, 0.5, 1, 2, 5, 10]
+  });
 
-  player.shuttleControls();
+  player.shuttleControls({
+    playPauseKeys : [' ', 'k'],
+    backwardKeys  : ['j'],
+    forwardKey    : ['l'],
+    fps           : 30
+  });
+  
 });
 ```
+
+### ES6
+```js
+import videojs from 'video.js'
+import 'videojs-shuttle-controls'
+
+const player = videojs('my-video', {
+  playbackRates: [-10, -5, -2, -1, -0.5, 0.5, 1, 2, 5, 10]
+});
+
+player.shuttleControls({
+  playPauseKeys : [' ', 'k'],
+  backwardKeys  : ['j'],
+  forwardKey    : ['l'],
+  fps           : 30
+});
+```
+
 
 ## Options
 
@@ -76,7 +117,7 @@ require(['video.js', 'videojs-shuttle-controls'], function(videojs) {
 - `backwardKeys` (array of string): The keys to play backward (default: `['j']`)
 - `forwardKey` (array of string): The keys to play forward (default: `['l']`)
 - `fps` (number): The video frame rate (default: `30`)
-- `playbackRates` (array of number): Set playbackRates. If you want to display in the control bar, set it to the player's playbackRates instead of here. (default: `[-10, -5, -2, -1, -0.5, 0.5, 1, 2, 5, 10]`)
+- `playbackRates` (array of number): Set playbackRates. If you want to display in the control bar, set it to the player's playbackRates instead of here. (default: `[-10, -5, -2, -1, -0.5, 0.5, 1, 2, 5, 10]`) 
 
 
 
