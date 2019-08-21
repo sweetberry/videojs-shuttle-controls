@@ -67,8 +67,8 @@ class ShuttleControls extends Plugin {
       this._onKeydown(e);
     });
     this.playbackRates = this.options.playbackRates;
-    if (player.options().playbackRates.length) {
-      this.playbackRates = player.options().playbackRates;
+    if (player.options_.playbackRates.length) {
+      this.playbackRates = player.options_.playbackRates;
     }
   }
 
