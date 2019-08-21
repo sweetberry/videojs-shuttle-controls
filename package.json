@@ -48,7 +48,12 @@
   "homepage": "https://github.com/sweetberry/videojs-shuttle-controls",
   "keywords": [
     "videojs",
-    "videojs-plugin"
+    "videojs-plugin",
+    "jog",
+    "shuttle",
+    "control",
+    "backward",
+    "rewind"
   ],
   "author": "sweetberry <pixel@sweetberry.com>",
   "license": "MIT",
