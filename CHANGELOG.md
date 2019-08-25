@@ -1,3 +1,6 @@
+<a name="1.1.0"></a>
+## 1.1.0 (2019-08-25)
+- Add frame by frame controls
 <a name="1.0.3"></a>
 ## 1.0.3 (2019-08-21)
 -　Fix deprecated this.options ()

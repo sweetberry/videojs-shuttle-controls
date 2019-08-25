@@ -44,6 +44,9 @@ This is the simplest case. Get the script in whatever way you prefer and include
     playPauseKeys : [' ', 'k'],
     backwardKeys  : ['j'],
     forwardKey    : ['l'],
+    backwardFrameKey: ['ArrowLeft'],
+    forwardFrameKey: ['ArrowRight'],
+    shiftMagnification: 10,
     fps           : 30
   });
 </script>
@@ -69,6 +72,9 @@ player.shuttleControls({
   playPauseKeys : [' ', 'k'],
   backwardKeys  : ['j'],
   forwardKey    : ['l'],
+  backwardFrameKey: ['ArrowLeft'],
+  forwardFrameKey: ['ArrowRight'],
+  shiftMagnification: 10,
   fps           : 30
 });
 ```
@@ -87,6 +93,9 @@ require(['video.js', 'videojs-shuttle-controls'], function(videojs) {
     playPauseKeys : [' ', 'k'],
     backwardKeys  : ['j'],
     forwardKey    : ['l'],
+    backwardFrameKey: ['ArrowLeft'],
+    forwardFrameKey: ['ArrowRight'],
+    shiftMagnification: 10,
     fps           : 30
   });
   
@@ -106,6 +115,9 @@ player.shuttleControls({
   playPauseKeys : [' ', 'k'],
   backwardKeys  : ['j'],
   forwardKey    : ['l'],
+  backwardFrameKey: ['ArrowLeft'],
+  forwardFrameKey: ['ArrowRight'],
+  shiftMagnification: 10,
   fps           : 30
 });
 ```
@@ -116,6 +128,10 @@ player.shuttleControls({
 - `playPauseKeys` (array of string): The keys to toggle between play and pause (default: `[' ', 'k']`)
 - `backwardKeys` (array of string): The keys to play backward (default: `['j']`)
 - `forwardKey` (array of string): The keys to play forward (default: `['l']`)
+- `backwardFrameKey` (array of string): The keys to step backward (default: `['ArrowLeft']`)
+- `forwardFrameKey` (array of string): The keys to step forward (default: `['ArrowRight']`)
+- `shiftMagnification` (number): The step magnification when using shift key (default: `10`)
+
 - `fps` (number): The video frame rate (default: `30`)
 - `playbackRates` (array of number): Set playbackRates. If you want to display in the control bar, set it to the player's playbackRates instead of here. (default: `[-10, -5, -2, -1, -0.5, 0.5, 1, 2, 5, 10]`) 
 

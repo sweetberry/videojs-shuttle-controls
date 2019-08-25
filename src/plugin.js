@@ -8,6 +8,9 @@ const defaults = {
   playPauseKeys: [' ', 'k'],
   backwardKeys: ['j'],
   forwardKey: ['l'],
+  backwardFrameKey: ['ArrowLeft'],
+  forwardFrameKey: ['ArrowRight'],
+  shiftMagnification: 10,
   fps: 30,
   playbackRates: [-10, -5, -2, -1, -0.5, 0.5, 1, 2, 5, 10]
 };
@@ -39,6 +42,9 @@ class ShuttleControls extends Plugin {
    * @param  {String[]} [options.playPauseKeys]
    * @param  {String[]} [options.backwardKeys]
    * @param  {String[]} [options.forwardKey]
+   * @param  {String[]} [options.backwardFrameKey]
+   * @param  {String[]} [options.forwardFrameKey]
+   * @param  {number} [options.shiftMagnification]
    * @param  {number} [options.fps]
    * @param  {Number[]} [options.playbackRates]
    */
@@ -55,6 +61,10 @@ class ShuttleControls extends Plugin {
     this.playPauseKeys = this.options.playPauseKeys;
     this.backwardKeys = this.options.backwardKeys;
     this.forwardKey = this.options.forwardKey;
+    this.backwardFrameKey = this.options.backwardFrameKey;
+    this.forwardFrameKey = this.options.forwardFrameKey;
+    this.shiftMagnification = this.options.shiftMagnification;
+
     this.fps = this.options.fps;
 
     this.currentPlaybackRate = 1;
@@ -74,6 +84,8 @@ class ShuttleControls extends Plugin {
 
   _onKeydown(e) {
     this._clearNegativeTimer();
+    const mag = e.shiftKey ? this.shiftMagnification : 1;
+
     if (this.playPauseKeys.indexOf(e.key) > -1) {
       this._togglePlay();
     }
@@ -82,6 +94,12 @@ class ShuttleControls extends Plugin {
     }
     if (this.backwardKeys.indexOf(e.key) > -1) {
       this._shuttlePlaybackRate(-1);
+    }
+    if (this.forwardFrameKey.indexOf(e.key) > -1) {
+      this.frameByFrame(mag);
+    }
+    if (this.backwardFrameKey.indexOf(e.key) > -1) {
+      this.frameByFrame(-mag);
     }
   }
 
@@ -151,6 +169,14 @@ class ShuttleControls extends Plugin {
 
       this._play(playbackRates[nextIndex]);
     }
+  }
+
+  frameByFrame(step) {
+    const player = this.player;
+    const frameTime = 1 / this.fps;
+
+    player.pause();
+    player.currentTime(this.player.currentTime() + frameTime * step);
   }
 }
 
