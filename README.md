@@ -2,6 +2,7 @@
 
 Adds shuttle controls(JKL controls) to video.js
 
+[Live demo](https://sweetberry.github.io/videojs-shuttle-controls/)
 ## Table of Contents
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
