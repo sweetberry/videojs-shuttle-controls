@@ -12,14 +12,17 @@
     <source src="//vjs.zencdn.net/v/oceans.webm" type='video/webm'>
   </video>
   <ul>
-    <li><a href="/test/debug.html">Run unit tests in browser.</a></li>
-    <li><a href="docs/api/">Read generated docs.</a></li>
+    <li>Try press [ j, k, l, arrowLeft, arrowRight, spaceBar ]</li>
+  <!--    <li><a href="/test/debug.html">Run unit tests in browser.</a></li>-->
+  <!--    <li><a href="docs/api/">Read generated docs.</a></li>-->
   </ul>
-  <script src="node_modules/video.js/dist/video.js"></script>
+  <script src="https://vjs.zencdn.net/7.6.0/video.js"></script>
   <script src="dist/videojs-shuttle-controls.js"></script>
   <script>
     (function(window, videojs) {
-      var examplePlayer = window.examplePlayer = videojs('videojs-shuttle-controls-player');
+      var examplePlayer = window.examplePlayer = videojs('videojs-shuttle-controls-player', {
+          playbackRates: [-10, -5, -2, -1, -0.5, 0.5, 1, 2, 5, 10]
+      });
       var shuttleControls = window.shuttleControls = examplePlayer.shuttleControls();
     }(window, window.videojs));
   </script>
