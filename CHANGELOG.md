@@ -1,3 +1,6 @@
+<a name="1.1.1"></a>
+## 1.1.1 (2019-09-18)
+
 <a name="1.1.0"></a>
 ## 1.1.0 (2019-08-25)
 - Add frame by frame controls
