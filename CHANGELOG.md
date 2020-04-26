@@ -1,3 +1,6 @@
+<a name="1.2.0"></a>
+## [1.2.0](https://github.com/sweetberry/videojs-shuttle-controls/compare/v1.1.1...v1.2.0) (2020-04-26)
+- Add in-out loop
 <a name="1.1.1"></a>
 ## 1.1.1 (2019-09-18)
 
