@@ -1,11 +1,11 @@
-/*! @name videojs-shuttle-controls @version 1.2.1 @license MIT */
+/*! @name videojs-shuttle-controls @version 1.2.2 @license MIT */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('video.js')) :
   typeof define === 'function' && define.amd ? define(['video.js'], factory) :
   (global = global || self, global.videojsShuttleControls = factory(global.videojs));
-}(this, function (videojs) { 'use strict';
+}(this, (function (videojs) { 'use strict';
 
-  videojs = videojs && videojs.hasOwnProperty('default') ? videojs['default'] : videojs;
+  videojs = videojs && Object.prototype.hasOwnProperty.call(videojs, 'default') ? videojs['default'] : videojs;
 
   function _inheritsLoose(subClass, superClass) {
     subClass.prototype = Object.create(superClass.prototype);
@@ -13,7 +13,7 @@
     subClass.__proto__ = superClass;
   }
 
-  var version = "1.2.1";
+  var version = "1.2.2";
 
   var Plugin = videojs.getPlugin('plugin'); // Default options for the plugin.
 
@@ -47,9 +47,7 @@
    */
 
 
-  var ShuttleControls =
-  /*#__PURE__*/
-  function (_Plugin) {
+  var ShuttleControls = /*#__PURE__*/function (_Plugin) {
     _inheritsLoose(ShuttleControls, _Plugin);
 
     /**
@@ -116,6 +114,10 @@
           _this.player.$('.vjs-playback-rate-value').innerHTML = speed + "x";
           _this.currentPlaybackRate = speed;
         }
+      });
+
+      _this.player.one('play', function () {
+        _this.isPlaying = true;
       });
 
       _this._tweakMenuStyles();
@@ -455,4 +457,4 @@
 
   return ShuttleControls;
 
-}));
+})));

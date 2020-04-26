@@ -1,4 +1,4 @@
-/*! @name videojs-shuttle-controls @version 1.2.1 @license MIT */
+/*! @name videojs-shuttle-controls @version 1.2.2 @license MIT */
 'use strict';
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
@@ -11,7 +11,7 @@ function _inheritsLoose(subClass, superClass) {
   subClass.__proto__ = superClass;
 }
 
-var version = "1.2.1";
+var version = "1.2.2";
 
 var Plugin = videojs.getPlugin('plugin'); // Default options for the plugin.
 
@@ -45,9 +45,7 @@ function silencePromise(value) {
  */
 
 
-var ShuttleControls =
-/*#__PURE__*/
-function (_Plugin) {
+var ShuttleControls = /*#__PURE__*/function (_Plugin) {
   _inheritsLoose(ShuttleControls, _Plugin);
 
   /**
@@ -114,6 +112,10 @@ function (_Plugin) {
         _this.player.$('.vjs-playback-rate-value').innerHTML = speed + "x";
         _this.currentPlaybackRate = speed;
       }
+    });
+
+    _this.player.one('play', function () {
+      _this.isPlaying = true;
     });
 
     _this._tweakMenuStyles();
