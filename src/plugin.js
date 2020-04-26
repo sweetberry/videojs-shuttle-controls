@@ -101,7 +101,9 @@ class ShuttleControls extends Plugin {
       }
 
     });
-
+    this.player.one('play', () => {
+      this.isPlaying = true;
+    });
     this._tweakMenuStyles();
     this._listenPlayControlButton();
     this._createMarkers();
