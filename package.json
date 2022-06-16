@@ -1,5 +1,5 @@
 {
-  "name": "videojs-shuttle-controls",
+  "name": "@adsignal/videojs-shuttle-controls",
   "version": "1.2.5",
   "description": "Adds shuttle controls(JKL controls) to video.js",
   "main": "dist/videojs-shuttle-controls.cjs.js",
@@ -94,7 +94,6 @@
   },
   "devDependencies": {
     "@videojs/generator-helpers": "~1.0.0",
-    "jsdoc": "BrandonOCasey/jsdoc#feat/plugin-from-cli",
     "karma": "^4.0.0",
     "rollup": "^1.10.0",
     "sinon": "^7.2.2",
