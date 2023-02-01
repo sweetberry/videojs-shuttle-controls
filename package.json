@@ -1,6 +1,6 @@
 {
   "name": "@adsignal/videojs-shuttle-controls",
-  "version": "1.2.5",
+  "version": "1.2.4",
   "description": "Adds shuttle controls(JKL controls) to video.js",
   "main": "dist/videojs-shuttle-controls.cjs.js",
   "module": "dist/videojs-shuttle-controls.es.js",
@@ -18,7 +18,6 @@
     "postclean": "shx mkdir -p ./dist ./test/dist",
     "docs": "npm-run-all docs:*",
     "docs:toc": "doctoc --notitle README.md",
-    "docs:api": "jsdoc src -g plugins/markdown -r -d docs/api",
     "lint": "vjsstandard",
     "server": "karma start scripts/karma.conf.js --singleRun=false --auto-watch",
     "start": "npm-run-all -p server watch",
