@@ -122,18 +122,20 @@ class ShuttleControls extends Plugin {
     const buttonDom = videojs.dom.$('.vjs-play-control');
     const techDom = videojs.dom.$('.vjs-tech');
     const playControlHandler = () => {
-      const hasPaused = videojs.dom.hasClass(techDom.parentNode, 'vjs-paused');
-      const currentPlaybackRate = this.currentPlaybackRate;
-      const isNegativePlaying = this.isPlaying && currentPlaybackRate < 0 && hasPaused;
-      const isNegativePause = !this.isPlaying && currentPlaybackRate < 0 && hasPaused;
-      const isPositivePlaying = this.isPlaying && currentPlaybackRate > 0 && !hasPaused;
-      const isPositivePause = !this.isPlaying && currentPlaybackRate > 0 && hasPaused;
+      if (techDom.parentNode.id == this.player.id) {
+        const hasPaused = videojs.dom.hasClass(techDom.parentNode, 'vjs-paused');
+        const currentPlaybackRate = this.currentPlaybackRate;
+        const isNegativePlaying = this.isPlaying && currentPlaybackRate < 0 && hasPaused;
+        const isNegativePause = !this.isPlaying && currentPlaybackRate < 0 && hasPaused;
+        const isPositivePlaying = this.isPlaying && currentPlaybackRate > 0 && !hasPaused;
+        const isPositivePause = !this.isPlaying && currentPlaybackRate > 0 && hasPaused;
 
-      if (isNegativePlaying || isPositivePlaying) {
-        this._playPause();
-      }
-      if (isNegativePause || isPositivePause) {
-        this._play(currentPlaybackRate);
+        if (isNegativePlaying || isPositivePlaying) {
+          this._playPause();
+        }
+        if (isNegativePause || isPositivePause) {
+          this._play(currentPlaybackRate);
+        }
       }
     };
 
