@@ -1,3 +1,6 @@
+<a name="1.2.5"></a>
+## [1.2.5](https://github.com/sweetberry/videojs-shuttle-controls/compare/v1.2.4...v1.2.5) (2023-06-15)
+
 <a name="1.2.4"></a>
 ## [1.2.4](https://github.com/sweetberry/videojs-shuttle-controls/compare/v1.2.3...v1.2.4) (2020-04-26)
 
