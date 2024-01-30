@@ -39,12 +39,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/sweetberry/videojs-shuttle-controls.git"
+    "url": "git+https://github.com/ad-signal/videojs-shuttle-controls.git"
   },
   "bugs": {
-    "url": "https://github.com/sweetberry/videojs-shuttle-controls/issues"
+    "url": "https://github.com/ad-signal/videojs-shuttle-controls/issues"
   },
-  "homepage": "https://github.com/sweetberry/videojs-shuttle-controls",
+  "homepage": "https://github.com/ad-signal/videojs-shuttle-controls",
   "keywords": [
     "videojs",
     "videojs-plugin",
@@ -54,7 +54,7 @@
     "backward",
     "rewind"
   ],
-  "author": "sweetberry <pixel@sweetberry.com>",
+  "author": "ad-signal",
   "license": "MIT",
   "vjsstandard": {
     "ignore": [
