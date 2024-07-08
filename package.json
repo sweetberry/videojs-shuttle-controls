@@ -1,6 +1,6 @@
 {
-  "name": "@adsignal/videojs-shuttle-controls",
-  "version": "1.2.6",
+  "name": "videojs-shuttle-controls",
+  "version": "1.2.7",
   "description": "Adds shuttle controls(JKL controls) to video.js",
   "main": "dist/videojs-shuttle-controls.cjs.js",
   "module": "dist/videojs-shuttle-controls.es.js",
@@ -18,6 +18,7 @@
     "postclean": "shx mkdir -p ./dist ./test/dist",
     "docs": "npm-run-all docs:*",
     "docs:toc": "doctoc --notitle README.md",
+    "docs:api": "jsdoc src -g plugins/markdown -r -d docs/api",
     "lint": "vjsstandard",
     "server": "karma start scripts/karma.conf.js --singleRun=false --auto-watch",
     "start": "npm-run-all -p server watch",
@@ -25,7 +26,7 @@
     "test": "npm-run-all test:*",
     "posttest": "shx cat test/dist/coverage/text.txt",
     "test:unit": "karma start scripts/karma.conf.js",
-    "test:verify": "vjsverify --verbose --skip-es-check",
+    "test:verify": "vjsverify --verbose",
     "update-changelog": "conventional-changelog -p videojs -i CHANGELOG.md -s",
     "preversion": "npm test",
     "version": "is-prerelease || npm run update-changelog && git add CHANGELOG.md",
@@ -39,12 +40,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ad-signal/videojs-shuttle-controls.git"
+    "url": "https://github.com/sweetberry/videojs-shuttle-controls.git"
   },
   "bugs": {
-    "url": "https://github.com/ad-signal/videojs-shuttle-controls/issues"
+    "url": "https://github.com/sweetberry/videojs-shuttle-controls/issues"
   },
-  "homepage": "https://github.com/ad-signal/videojs-shuttle-controls",
+  "homepage": "https://github.com/sweetberry/videojs-shuttle-controls",
   "keywords": [
     "videojs",
     "videojs-plugin",
@@ -54,7 +55,7 @@
     "backward",
     "rewind"
   ],
-  "author": "ad-signal",
+  "author": "sweetberry <pixel@sweetberry.com>",
   "license": "MIT",
   "vjsstandard": {
     "ignore": [
@@ -89,10 +90,11 @@
   },
   "dependencies": {
     "global": "^4.3.2",
-    "video.js": "^6 || ^7 || ^8"
+    "video.js": "^6 || ^7"
   },
   "devDependencies": {
     "@videojs/generator-helpers": "~1.0.0",
+    "jsdoc": "BrandonOCasey/jsdoc#feat/plugin-from-cli",
     "karma": "6.3.16",
     "rollup": "^1.10.0",
     "sinon": "^7.2.2",
