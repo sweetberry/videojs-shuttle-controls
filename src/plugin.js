@@ -60,7 +60,7 @@ class ShuttleControls extends Plugin {
     // the parent class will add player under this.player
     super(player);
 
-    this.options = videojs.mergeOptions(defaults, options);
+    this.options = videojs.obj.merge(defaults, options);
 
     this.player.ready(() => {
       this.player.addClass('vjs-shuttle-controls');

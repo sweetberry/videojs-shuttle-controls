@@ -1,6 +1,6 @@
 {
   "name": "videojs-shuttle-controls",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "description": "Adds shuttle controls(JKL controls) to video.js",
   "main": "dist/videojs-shuttle-controls.cjs.js",
   "module": "dist/videojs-shuttle-controls.es.js",
