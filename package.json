@@ -96,7 +96,7 @@
     "@videojs/generator-helpers": "~1.0.0",
     "jsdoc": "BrandonOCasey/jsdoc#feat/plugin-from-cli",
     "karma": "6.3.16",
-    "rollup": "^1.10.0",
+    "rollup": "2.79.2",
     "sinon": "^7.2.2",
     "videojs-generate-karma-config": "~5.2.0",
     "videojs-generate-rollup-config": "~3.1.0",
