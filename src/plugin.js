@@ -1,7 +1,12 @@
 import videojs from 'video.js';
 import {version as VERSION} from '../package.json';
 
-const Plugin = videojs.getPlugin('plugin');
+const vjs = videojs || (typeof window !== 'undefined' && window.videojs);
+if (!vjs) {
+  throw new Error('video.js must be loaded before videojs-shuttle-controls');
+}
+
+const Plugin = vjs.getPlugin('plugin');
 
 // Default options for the plugin.
 const defaults = {
@@ -23,8 +28,8 @@ const defaults = {
  * @param {Promise} value
  */
 function silencePromise(value) {
-  if (value !== null && typeof value.then === 'function') {
-    value.then(null, function(e) {
+  if (value !== null && typeof value === 'object' && typeof value.then === 'function') {
+    value.then(null, function() {
     });
   }
 }
@@ -86,7 +91,7 @@ class ShuttleControls extends Plugin {
       this._onKeydown(e);
     });
     this.playbackRates = this.options.playbackRates;
-    if (player.options_.playbackRates.length) {
+    if (player.options_ && player.options_.playbackRates && player.options_.playbackRates.length) {
       this.playbackRates = player.options_.playbackRates;
     }
 
@@ -96,7 +101,10 @@ class ShuttleControls extends Plugin {
       if (this.isPlaying) {
         this._play(speed);
       } else {
-        this.player.$('.vjs-playback-rate-value').innerHTML = `${speed}x`;
+        const rateValue = this.player.$('.vjs-playback-rate-value');
+        if (rateValue) {
+          rateValue.innerHTML = `${speed}x`;
+        }
         this.currentPlaybackRate = speed;
       }
 
@@ -122,7 +130,7 @@ class ShuttleControls extends Plugin {
     const buttonDom = videojs.dom.$('.vjs-play-control');
     const techDom = videojs.dom.$('.vjs-tech');
     const playControlHandler = () => {
-      if (techDom.parentNode.id == this.player.id) {
+      if (techDom && techDom.parentNode && techDom.parentNode.id === this.player.id) {
         const hasPaused = videojs.dom.hasClass(techDom.parentNode, 'vjs-paused');
         const currentPlaybackRate = this.currentPlaybackRate;
         const isNegativePlaying = this.isPlaying && currentPlaybackRate < 0 && hasPaused;
@@ -139,8 +147,12 @@ class ShuttleControls extends Plugin {
       }
     };
 
-    buttonDom.addEventListener('click', playControlHandler);
-    techDom.addEventListener('click', playControlHandler);
+    if (buttonDom) {
+      buttonDom.addEventListener('click', playControlHandler);
+    }
+    if (techDom) {
+      techDom.addEventListener('click', playControlHandler);
+    }
   }
 
   _onKeydown(e) {
@@ -217,10 +229,9 @@ class ShuttleControls extends Plugin {
     this._clearLoopTimer();
     this._clearNegativeTimer();
     this.isPlaying = false;
-    // console.log(this.isPlaying);
     const buttonDom = videojs.dom.$('.vjs-play-control');
 
-    if (videojs.dom.hasClass(buttonDom, 'vjs-playing')) {
+    if (buttonDom && videojs.dom.hasClass(buttonDom, 'vjs-playing')) {
       videojs.dom.toggleClass(buttonDom, 'vjs-paused');
       videojs.dom.toggleClass(buttonDom, 'vjs-playing');
     }
@@ -232,7 +243,10 @@ class ShuttleControls extends Plugin {
 
     this.currentPlaybackRate = 1;
     player.playbackRate(1);
-    player.$('.vjs-playback-rate-value').innerHTML = '1x';
+    const rateValue = player.$('.vjs-playback-rate-value');
+    if (rateValue) {
+      rateValue.innerHTML = '1x';
+    }
   }
 
   _togglePlay() {
@@ -252,20 +266,22 @@ class ShuttleControls extends Plugin {
     const frameTime = 1 / (this.fps);
     const buttonDom = videojs.dom.$('.vjs-play-control');
 
-    if (videojs.dom.hasClass(buttonDom, 'vjs-paused')) {
+    if (buttonDom && videojs.dom.hasClass(buttonDom, 'vjs-paused')) {
       videojs.dom.toggleClass(buttonDom, 'vjs-paused');
       videojs.dom.toggleClass(buttonDom, 'vjs-playing');
     }
     this.isPlaying = true;
     player.pause();
-    player.$('.vjs-playback-rate-value').innerHTML = `${speed}x`;
+    const rateValue = player.$('.vjs-playback-rate-value');
+    if (rateValue) {
+      rateValue.innerHTML = `${speed}x`;
+    }
     let newTime = this.player.currentTime() + frameTime * speed;
 
     if (newTime < 0) {
       newTime = player.duration();
     }
     player.currentTime(newTime);
-
   }
 
   _loop(speed) {
@@ -292,7 +308,6 @@ class ShuttleControls extends Plugin {
         player.currentTime(outTime + frameTime * speed);
       }
     }
-
   }
 
   _play(speed) {
@@ -392,10 +407,11 @@ class ShuttleControls extends Plugin {
       outMarker.style[key] = outMarkerStyle[key];
     });
 
-    player.el().querySelector('.vjs-progress-holder')
-      .appendChild(inMarker);
-    player.el().querySelector('.vjs-progress-holder')
-      .appendChild(outMarker);
+    const progressHolder = player.el().querySelector('.vjs-progress-holder');
+    if (progressHolder) {
+      progressHolder.appendChild(inMarker);
+      progressHolder.appendChild(outMarker);
+    }
 
     this.inMarker = inMarker;
     this.outMarker = outMarker;
@@ -410,8 +426,12 @@ class ShuttleControls extends Plugin {
     const inMarker = this.inMarker;
     const outMarker = this.outMarker;
 
-    inMarker.style.left = `${inPosition}%`;
-    outMarker.style.left = `${outPosition}%`;
+    if (inMarker) {
+      inMarker.style.left = `${inPosition}%`;
+    }
+    if (outMarker) {
+      outMarker.style.left = `${outPosition}%`;
+    }
   }
 
 }
@@ -423,6 +443,6 @@ ShuttleControls.defaultState = {};
 ShuttleControls.VERSION = VERSION;
 
 // Register the plugin with video.js.
-videojs.registerPlugin('shuttleControls', ShuttleControls);
+vjs.registerPlugin('shuttleControls', ShuttleControls);
 
 export default ShuttleControls;

@@ -1,43 +1,41 @@
 {
   "name": "videojs-shuttle-controls",
-  "version": "1.2.7",
+  "version": "2.0.0",
   "description": "Adds shuttle controls(JKL controls) to video.js",
-  "main": "dist/videojs-shuttle-controls.cjs.js",
-  "module": "dist/videojs-shuttle-controls.es.js",
-  "generator-videojs-plugin": {
-    "version": "7.6.3"
+  "type": "module",
+  "main": "./dist/videojs-shuttle-controls.cjs",
+  "module": "./dist/videojs-shuttle-controls.es.js",
+  "types": "./dist/index.d.ts",
+  "unpkg": "./dist/videojs-shuttle-controls.min.js",
+  "jsdelivr": "./dist/videojs-shuttle-controls.min.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/videojs-shuttle-controls.es.js",
+      "require": "./dist/videojs-shuttle-controls.cjs",
+      "default": "./dist/videojs-shuttle-controls.es.js"
+    },
+    "./dist/*": "./dist/*"
   },
-  "browserslist": [
-    "defaults"
+  "files": [
+    "dist"
   ],
   "scripts": {
-    "prebuild": "npm run clean",
-    "build": "npm-run-all -p build:*",
-    "build:js": "rollup -c scripts/rollup.config.js",
-    "clean": "shx rm -rf ./dist ./test/dist",
-    "postclean": "shx mkdir -p ./dist ./test/dist",
-    "docs": "npm-run-all docs:*",
-    "docs:toc": "doctoc --notitle README.md",
-    "docs:api": "jsdoc src -g plugins/markdown -r -d docs/api",
-    "lint": "vjsstandard",
-    "server": "karma start scripts/karma.conf.js --singleRun=false --auto-watch",
-    "start": "npm-run-all -p server watch",
-    "pretest": "npm-run-all lint build",
-    "test": "npm-run-all test:*",
-    "posttest": "shx cat test/dist/coverage/text.txt",
-    "test:unit": "karma start scripts/karma.conf.js",
-    "test:verify": "vjsverify --verbose",
-    "update-changelog": "conventional-changelog -p videojs -i CHANGELOG.md -s",
-    "preversion": "npm test",
-    "version": "is-prerelease || npm run update-changelog && git add CHANGELOG.md",
-    "watch": "npm-run-all -p watch:*",
-    "watch:js": "npm run build:js -- -w",
-    "prepublishOnly": "npm-run-all build test:verify"
+    "build": "vite build",
+    "dev": "vite",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
-  "engines": {
-    "node": ">=8",
-    "npm": ">=5"
-  },
+  "keywords": [
+    "video.js",
+    "videojs",
+    "videojs-plugin",
+    "shuttle",
+    "jog",
+    "JKL",
+    "plugin"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/sweetberry/videojs-shuttle-controls.git"
@@ -46,61 +44,16 @@
     "url": "https://github.com/sweetberry/videojs-shuttle-controls/issues"
   },
   "homepage": "https://github.com/sweetberry/videojs-shuttle-controls",
-  "keywords": [
-    "videojs",
-    "videojs-plugin",
-    "jog",
-    "shuttle",
-    "control",
-    "backward",
-    "rewind"
-  ],
   "author": "sweetberry <pixel@sweetberry.com>",
   "license": "MIT",
-  "vjsstandard": {
-    "ignore": [
-      "dist",
-      "docs",
-      "test/dist"
-    ]
-  },
-  "files": [
-    "CONTRIBUTING.md",
-    "dist/",
-    "docs/",
-    "index.html",
-    "scripts/",
-    "src/",
-    "test/"
-  ],
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.js": [
-      "vjsstandard --fix",
-      "git add"
-    ],
-    "README.md": [
-      "doctoc --notitle",
-      "git add"
-    ]
-  },
-  "dependencies": {
-    "global": "^4.3.2",
-    "video.js": "^6 || ^7"
+  "peerDependencies": {
+    "video.js": "^8.0.0"
   },
   "devDependencies": {
-    "@videojs/generator-helpers": "~1.0.0",
-    "jsdoc": "BrandonOCasey/jsdoc#feat/plugin-from-cli",
-    "karma": "6.3.16",
-    "rollup": "^1.10.0",
-    "sinon": "^7.2.2",
-    "videojs-generate-karma-config": "~5.2.0",
-    "videojs-generate-rollup-config": "~3.1.0",
-    "videojs-generator-verify": "~1.2.0",
-    "videojs-standard": "^8.0.3"
+    "esbuild": "^0.28.2",
+    "jsdom": "^26.0.0",
+    "video.js": "^8.24.2",
+    "vite": "^6.0.0",
+    "vitest": "^3.0.0"
   }
 }

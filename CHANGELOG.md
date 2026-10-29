@@ -1,3 +1,14 @@
+<a name="2.0.0"></a>
+## [2.0.0](https://github.com/sweetberry/videojs-shuttle-controls/compare/v1.2.7...v2.0.0) (2026-10-29)
+
+- Support Video.js v8
+- Migrate build system to Vite (ESM, CJS, UMD/IIFE)
+- Migrate test runner to Vitest (jsdom)
+- Add TypeScript type definitions
+
+<a name="1.2.7"></a>
+## [1.2.7](https://github.com/sweetberry/videojs-shuttle-controls/compare/v1.2.4...v1.2.7) (2024-07-15)
+
 <a name="1.2.5"></a>
 ## [1.2.5](https://github.com/sweetberry/videojs-shuttle-controls/compare/v1.2.4...v1.2.5) (2023-06-15)
 
